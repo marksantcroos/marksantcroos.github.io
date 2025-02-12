@@ -10,32 +10,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
   </head>
   <body>
-  <nav class="bottom s">
-  <a data-ui="#home">
-    <button class="transparent vertical">
-    <i>Home</i>
-    <div>Start</div>
-    </button>
-  </a>
-  <a data-ui="#medication">
-    <button class="transparent vertical">
-    <i>Pill</i>
-    <div>Medicatie</div>
-    </button>
-  </a>
-  <a data-ui="#genes">
-    <button class="transparent vertical">
-    <i>Genetics</i>
-    <div>Genen</div>
-    </button>
-  </a>
-  <a data-ui="#variants">
-    <button class="transparent vertical">
-    <i>Receipt_Long</i>
-    <div>Varianten</div>
-    </button>
-  </a>
-  </nav>
+
 
 <main class="responsive">
 
@@ -52,7 +27,7 @@ In 2023 is ook het Maasstad Ziekenhuis aangesloten.
 <center>
 <div class="col-sm-6">
     <div class="embed-responsive embed-responsive-4by3">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqFNFEAbf20"></iframe>
+        <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqFNFEAbf20"></iframe-->
     </div>
 </div>
 </center>
@@ -63,8 +38,19 @@ In 2023 is ook het Maasstad Ziekenhuis aangesloten.
 
 <!-- Medication -->
 <div class="page" id="medication">
+  <header class="fixed small-blur">
+  <nav>
+    <button class="circle transparent">
+      <i>arrow_back</i>
+    </button>
+    <h5 class="max">App bar</h5>
+    <button class="circle transparent">
+      <i>more_vert</i>
+    </button>
+  </nav>
+</header>
 
-<img class="center responsive" src="helix.jpeg" style="height:250px;"/>
+<img class="center bottom-round responsive" src="helix.jpeg" style="height:250px;"/>
 
 <div class="absolute" style="height:300px;">
 <article class="round">
@@ -250,7 +236,37 @@ aanbevolen.
     </tbody>
 </table>
 </div>
-
 </main>
+
+
+<footer class="small-blur">
+  <nav class="bottom s round">
+  <a data-ui="#home">
+    <button class="transparent vertical">
+    <i>Home</i>
+    <div>Home</div>
+    </button>
+  </a>
+  <a data-ui="#medication">
+    <button class="transparent vertical">
+    <i>Pill</i>
+    <div>Medicatie</div>
+    </button>
+  </a>
+  <a data-ui="#genes">
+    <button class="transparent vertical">
+    <i>Genetics</i>
+    <div>Genen</div>
+    </button>
+  </a>
+  <a data-ui="#variants">
+    <button class="transparent vertical">
+    <i>Receipt_Long</i>
+    <div>Varianten</div>
+    </button>
+  </a>
+  </nav>
+</footer>
+
 </body>
 </html>
