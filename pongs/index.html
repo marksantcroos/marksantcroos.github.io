@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -8,6 +9,24 @@
   <link href="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css" rel="stylesheet">
   <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
+  <script type="text/javascript">
+  function myFunc(t) {
+    const page = t.dataset.ui;
+    console.log("Hello world", page);
+    const state = { active: page };
+    history.pushState(state, null, null);
+    console.log("New active:", state.active);
+  }
+  window.onpopstate = checkState;
+  function checkState(e) {
+    console.log('checkstate', e.state);
+    if (e.state) {
+      ui(e.state.active);
+    }
+  }
+  history.replaceState({active: "#home"}, "page#home", null);
+  console.log("New active:", history.state.active);
+  </script>
 </head>
 <body style="background-image: url('helix.jpeg');background-repeat:no-repeat;background-attachment:fixed;">
 
@@ -35,13 +54,11 @@
       ook het Maasstad Ziekenhuis aangesloten.
       </p>
 
-      <center>
-        <div class="col-sm-6">
-          <div class="embed-responsive embed-responsive-4by3">
-           <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqFNFEAbf20"></iframe-->
-          </div>
+      <div class="col-sm-6">
+        <div class="embed-responsive embed-responsive-4by3">
+         <!--iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqFNFEAbf20"></iframe-->
         </div>
-      </center>
+      </div>
 
     <h3>Wie kan een DNAmedicatiepas aanvragen?</h3>
 
@@ -63,7 +80,7 @@
       <h5>Medicatie-adviezen</h5>
       Voor de volgende medicatie wordt een alternatief medicijn of andere dosis aanbevolen.
 
-      <a class="row padding surface-container" data-ui="#advice">
+      <a class="row padding surface-container" data-ui="#advice" onclick="myFunc(this)">
         <i>pill</i>
         <h6>citalopram</h6>
         <i>arrow_forward_ios</i>
@@ -71,7 +88,7 @@
 
       <div class="divider"></div>
 
-      <a class="row padding surface-container" data-ui="#advice">
+      <a class="row padding surface-container" data-ui="#advice" onclick="myFunc(this)">
         <i>pill</i>
         <h6>citalopram</h6>
         <i>arrow_forward_ios</i>
@@ -261,25 +278,25 @@
 
   <footer class="fixed small-blur">
     <nav class="bottom s round">
-      <a data-ui="#home">
+      <a data-ui="#home" onclick="myFunc(this)">
         <button class="transparent vertical">
           <i>Home</i>
           <div>Home</div>
         </button>
       </a>
-      <a data-ui="#medication">
+      <a data-ui="#medication" onclick="myFunc(this)">
         <button class="transparent vertical">
           <i>Pill</i>
           <div>Medicatie</div>
         </button>
       </a>
-      <a data-ui="#genes">
+      <a data-ui="#genes" onclick="myFunc(this)">
         <button class="transparent vertical">
           <i>Genetics</i>
           <div>Genen</div>
         </button>
       </a>
-      <a data-ui="#variants">
+      <a data-ui="#variants" onclick="myFunc(this)">
         <button class="transparent vertical">
           <i>Receipt_Long</i>
           <div>Varianten</div>
