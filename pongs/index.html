@@ -11,25 +11,23 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
   <script type="text/javascript">
 
-  function myFunc(e) {
-    const page = e.target.parentNode.dataset.ui;
-    const state = { active: page };
-    history.pushState(state, null, null);
-    console.log("New active:", state.active);
-  }
-
-  window.onpopstate = checkState;
-  function checkState(e) {
-    console.log('checkstate', e.state);
-    if (e.state) {
-      ui(e.state.active);
-    }
-  }
-
   function init() {
-    var pages = document.querySelectorAll("a[data-ui]");
+    window.onpopstate = e => {
+      console.log('checkstate', e.state);
+      if (e.state) {
+        ui(e.state.active);
+      }
+    };
+
+    const pages = document.querySelectorAll("a[data-ui]");
     console.log("pages", pages);
-    pages.forEach(page => page.addEventListener('click', myFunc));
+    pages.forEach(page => page.addEventListener('click', e => {
+      const page = e.target.parentNode.dataset.ui;
+      const state = {active: page};
+      history.pushState(state, null, null);
+      console.log("New active:", state.active);
+    }));
+
     history.replaceState({active: "#home"}, "page#home", null);
     console.log("New active:", history.state.active);
   }
