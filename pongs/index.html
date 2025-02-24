@@ -10,13 +10,14 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
   <script type="text/javascript">
-  function myFunc(t) {
-    const page = t.dataset.ui;
-    console.log("Hello world", page);
+
+  function myFunc(e) {
+    const page = e.target.parentNode.dataset.ui;
     const state = { active: page };
     history.pushState(state, null, null);
     console.log("New active:", state.active);
   }
+
   window.onpopstate = checkState;
   function checkState(e) {
     console.log('checkstate', e.state);
@@ -24,8 +25,23 @@
       ui(e.state.active);
     }
   }
-  history.replaceState({active: "#home"}, "page#home", null);
-  console.log("New active:", history.state.active);
+
+  function init() {
+    var pages = document.querySelectorAll("a[data-ui]");
+    console.log("pages", pages);
+    pages.forEach(page => page.addEventListener('click', myFunc));
+    history.replaceState({active: "#home"}, "page#home", null);
+    console.log("New active:", history.state.active);
+  }
+
+  if (document.readyState === "loading") {
+    // Loading hasn't finished yet
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    // `DOMContentLoaded` has already fired
+    init();
+  }
+
   </script>
 </head>
 <body style="background-image: url('helix.jpeg');background-repeat:no-repeat;background-attachment:fixed;">
@@ -80,7 +96,7 @@
       <h5>Medicatie-adviezen</h5>
       Voor de volgende medicatie wordt een alternatief medicijn of andere dosis aanbevolen.
 
-      <a class="row padding surface-container" data-ui="#advice" onclick="myFunc(this)">
+      <a class="row padding surface-container" data-ui="#advice">
         <i>pill</i>
         <h6>citalopram</h6>
         <i>arrow_forward_ios</i>
@@ -88,7 +104,7 @@
 
       <div class="divider"></div>
 
-      <a class="row padding surface-container" data-ui="#advice" onclick="myFunc(this)">
+      <a class="row padding surface-container" data-ui="#advice">
         <i>pill</i>
         <h6>citalopram</h6>
         <i>arrow_forward_ios</i>
@@ -278,25 +294,25 @@
 
   <footer class="fixed small-blur">
     <nav class="bottom s round">
-      <a data-ui="#home" onclick="myFunc(this)">
+      <a data-ui="#home">
         <button class="transparent vertical">
           <i>Home</i>
           <div>Home</div>
         </button>
       </a>
-      <a data-ui="#medication" onclick="myFunc(this)">
+      <a data-ui="#medication">
         <button class="transparent vertical">
           <i>Pill</i>
           <div>Medicatie</div>
         </button>
       </a>
-      <a data-ui="#genes" onclick="myFunc(this)">
+      <a data-ui="#genes">
         <button class="transparent vertical">
           <i>Genetics</i>
           <div>Genen</div>
         </button>
       </a>
-      <a data-ui="#variants" onclick="myFunc(this)">
+      <a data-ui="#variants">
         <button class="transparent vertical">
           <i>Receipt_Long</i>
           <div>Varianten</div>
